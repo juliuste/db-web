@@ -7,13 +7,13 @@ const path = require('path')
 const nocache = require('nocache')
 
 const start = require('./start')
-const departures = require('./departures')
+const journeys = require('./journeys')
 
 const app = express()
 app.use(compression())
 app.use(files(path.join(__dirname, 'client')))
 
 app.get('/', start)
-app.get('/departures', nocache(), departures)
+app.get('/journeys', nocache(), journeys)
 
 module.exports = app

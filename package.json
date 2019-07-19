@@ -1,28 +1,29 @@
 {
 	"private": true,
-	"name": "vbb-web",
+	"name": "db-web",
 	"description": "A basic web client for Berlin & Brandenburg public transport.",
 	"version": "0.1.0",
 	"keywords": [
-		"vbb",
-		"bvg",
+		"db",
 		"public",
 		"transport",
-		"berlin"
+		"germany"
 	],
 	"main": "app.js",
 	"author": "Jannis R <mail@jannisr.de>",
-	"homepage": "https://github.com/derhuerst/vbb-web",
-	"repository": "derhuerst/vbb-web",
-	"issues": "https://github.com/derhuerst/vbb-web/issues",
+	"homepage": "https://github.com/juliuste/db-web",
+	"repository": "juliuste/db-web",
+	"issues": "https://github.com/juliuste/db-web/issues",
 	"license": "ISC",
 	"engines": {
 		"node": ">=6"
 	},
 	"dependencies": {
-		"bvg-hafas": "^1.0.1",
 		"compression": "^1.6.2",
+		"db-hafas": "^4.0.0",
+		"db-journey-ui": "github:juliuste/db-journey-ui#3.0.9",
 		"express": "^4.15.3",
+		"lodash": "^4.17.15",
 		"luxon": "^1.5.0",
 		"ms": "^2.0.0",
 		"nocache": "^2.0.0",
@@ -30,24 +31,22 @@
 		"pithy": "^0.0.4",
 		"serve-static": "^1.12.3",
 		"vbb-client": "^4.0.0",
-		"vbb-short-station-name": "^1.0.1",
-		"vbb-stations": "^6.1.0"
+		"virtual-dom-stringify": "^3.0.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.1.2",
 		"@babel/preset-env": "^7.1.0",
 		"babelify": "^10.0.0",
-		"browserify": "^16.2.3",
+		"browserify": "16",
 		"component-emitter": "^1.2.1",
 		"envify": "^4.1.0",
 		"horsey": "^3",
-		"uglify-es": "^3.0.15",
-		"vbb-logos": "github:derhuerst/vbb-logos#v2"
+		"nodemon": "^1.19.1",
+		"uglify-es": "^3.0.15"
 	},
 	"scripts": {
-		"icons": "rm -f client/*.svg; cp node_modules/vbb-logos/*.svg client/",
-		"bundle": "env NODE_ENV=production browserify -g [babelify --presets [ @babel/preset-env ] ] -g envify client/index.js | uglifyjs -mc > client/bundle.min.js",
-		"build": "npm run icons && npm run bundle",
+		"build": "browserify client/index.js > client/bundle.js",
+		"dev": "nodemon index.js",
 		"prepublishOnly": "npm run build",
 		"start": "node index.js"
 	}

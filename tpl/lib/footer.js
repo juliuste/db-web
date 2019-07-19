@@ -12,7 +12,9 @@ const footer = h.footer({id: 'footer'}, [
 		' made with ',
 		h.span({class: 'love'}, '❤'),
 		' by ',
-		h.a({href: 'http://jannisr.de'}, '@derhuerst'),
+		h.a({href: 'https://juliustens.eu'}, '@juliustens'),
+		' and ',
+		h.a({href: 'https://jannisr.de'}, '@derhuerst'),
 		'.'
 	])
 ])

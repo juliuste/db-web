@@ -1,11 +1,11 @@
 .DS_Store
-Thumbs.db
 
-.nvm-version
-node_modules
-npm-debug.log
+/.nvm-version
+/node_modules
+/npm-debug.log
 
+/yarn.lock
+/pnpm-lock.yaml
 /package-lock.json
 
-client/*.svg
-client/bundle.min.js
+/client/bundle.js

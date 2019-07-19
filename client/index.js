@@ -3,19 +3,35 @@
 const completion = require('./lib/completion')
 const stations = require('./lib/stations')
 
-const suggest = (query, cb) => {
-	if (query.length === 0 && localStorage.stations)
-		return cb(JSON.parse(localStorage.stations))
-	else stations(query, cb)
+const suggest = (query, cb) => stations(query, cb)
+
+const origin = document.getElementById('origin')
+if (origin) {
+	completion(origin, {
+		  suggest: suggest
+		, render:  (l) => l.name
+		, value:   (l) => l.id
+	})
 }
 
-completion(document.getElementById('station'), {
-	  suggest: suggest
-	, render:  (l) => l.name
-	, value:   (l) => l.id
-})
-.on('value', (l) => {
-	let ls = localStorage.stations ? JSON.parse(localStorage.stations) : []
-	ls = [l].concat(ls.filter((l2) => l2.id !== l.id)).slice(0, 5)
-	localStorage.stations = JSON.stringify(ls)
+const destination = document.getElementById('destination')
+if (destination) {
+	completion(destination, {
+		suggest: suggest
+		, render: (l) => l.name
+		, value: (l) => l.id
+	})
+}
+
+const checkinButtons = Array.from(document.querySelectorAll('.db-journey-ui-checkin-button'))
+checkinButtons.forEach(checkinButton => {
+	checkinButton.addEventListener('click', () => {
+		if (!Array.from(checkinButton.classList).includes('start')) return
+		checkinButton.classList.remove('start')
+		checkinButton.classList.add('loading')
+		setTimeout(() => {
+			checkinButton.classList.remove('loading')
+			checkinButton.classList.add('fail')
+		}, 3000)
+	})
 })

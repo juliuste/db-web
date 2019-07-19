@@ -2,7 +2,6 @@
 
 const h = require('pithy')
 
-const vbbTelegram = require('./lib/vbb-telegram')
 const completion = require('./lib/completion')
 const enableJS = require('./lib/enable-js')
 const head = require('./lib/head')
@@ -10,13 +9,20 @@ const footer = require('./lib/footer')
 
 const form = (station) => {
 	return h.form({
-		action: 'departures',
+		action: 'journeys',
 		method: 'GET'
 	}, [
 		completion({
-			id: 'station',
-			name: 'station',
-			placeholder: 'search for a station',
+			id: 'origin',
+			name: 'origin',
+			placeholder: 'origin',
+			text: '',
+			value: ''
+		}),
+		completion({
+			id: 'destination',
+			name: 'destination',
+			placeholder: 'destination',
 			text: '',
 			value: ''
 		}),
@@ -28,22 +34,21 @@ const form = (station) => {
 		}),
 		h.input({
 			type: 'submit',
-			value: 'show departures'
+			value: 'show journeys'
 		})
 	])
 }
 
-const page = (station, deps) => [
+const page = () => [
 	`<!DOCTYPE html>`,
 	h.html({lang: 'en'}, [
 		head(['main.css']),
 		h.body(null, [
-			h.h1(null, 'Departures'),
+			h.h1(null, 'Journeys'),
 			enableJS,
-			form(station),
-			vbbTelegram,
+			form(),
 			footer,
-			h.script({type: 'application/javascript', src: 'bundle.min.js'})
+			h.script({type: 'application/javascript', src: './bundle.js'})
 		])
 	])
 ].join('\n')

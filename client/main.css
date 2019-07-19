@@ -65,7 +65,7 @@ fieldset.completion > input { margin-top: 0; margin-bottom: 0 }
 
 fieldset.completion > ul {
 	margin: 0 .1em;
-	border: .1em solid #999; border-top-width: 0;
+	border: .1em solid #fc0; border-top-width: 0;
 	list-style: none; background-color: #f7f7f7;
 }
 fieldset.completion > ul:empty { border: none }
@@ -85,6 +85,9 @@ table {
 
 table thead, table tbody tr:nth-child(odd) { background-color: #f7f7f7 }
 table td { border-bottom: 1px solid #eee }
+/* #journeysList td {
+	border-bottom: 5px solid #aaa;
+} */
 table tr:last-child td { border-bottom: none }
 
 table thead > tr > th { font-weight: 500; border-bottom: .1em solid #777 }
@@ -94,14 +97,6 @@ table th:first-child, table td:first-child { padding-left: .6em }
 table th:last-child, table td:last-child { padding-right: .6em }
 
 table td a, table td a:visited { color: #333 }
-
-
-
-.departures-when { white-space: nowrap }
-.departures-delay { color: #e74c3c }
-.departures-line { white-space: nowrap }
-
-
 
 #footer { margin-top: 8rem; text-align: center }
 #footer .love { font-size: 150%; color: #e74c3c }
